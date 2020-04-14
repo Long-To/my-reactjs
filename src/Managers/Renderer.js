@@ -6,7 +6,7 @@ class Renderer {
     this.renderer = new THREE.WebGLRenderer({ alpha: true });
   }
 
-  initRenderer() {
+  initRenderer = () => {
     return ARUtils.getARDisplay().then((display) => {
       if (display) {
         this.vrDisplay = display;
@@ -18,7 +18,7 @@ class Renderer {
     });
   }
 
-  setupRenderer() {
+  setupRenderer = () => {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.autoClear = false;
@@ -27,7 +27,7 @@ class Renderer {
     this.arView = new ARView(this.vrDisplay, this.renderer);
   }
 
-  update(scene, camera, updateCallback) {
+  update = (scene, camera, updateCallback) => {
     this.renderer.clearColor();
     this.arView.render();
     this.renderer.clearDepth();

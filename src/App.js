@@ -24,6 +24,14 @@ class App extends React.Component {
 
 	setupScene = () => {
 		this.scene  =  new  THREE.Scene();
+		const  geometry  =  new  THREE.TorusGeometry(0.4,  0.1,  20,  30);
+		const  material  =  new  THREE.MeshPhongMaterial({ color:  0xff5643  });
+		this.torus  =  new  THREE.Mesh(geometry,  material);
+		const  light  =  new  THREE.PointLight(0xff0000,  1,  100);
+		light.position.set(5, 5, 5);
+		this.torus.position.copy(new  THREE.Vector3(0,0,-1.5));
+		this.scene.add(this.torus);
+		this.scene.add(light);
 		this.scene.add(this.mainCamera);
 	}
 
@@ -49,7 +57,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div />
+			<div ref={ref => (this.mount = ref)} />
 		);
 	}
 }
